@@ -745,8 +745,8 @@ jQuery.Velocity ? console.log("Velocity is already loaded. You may be needlessly
               l = {}; switch (i(o) === a && b.init(o), parseFloat(s.delay) && s.queue !== !1 && f.queue(o, s.queue, function (e) {
                 b.velocityQueueEntryFlag = !0, i(o).delayTimer = { setTimeout: setTimeout(e, parseFloat(s.delay)), next: e };
               }), s.duration.toString().toLowerCase()) {
-                case "fast":
-                  s.duration = 200; break; case "normal":
+              case "fast":
+                s.duration = 200; break; case "normal":
                 s.duration = h; break; case "slow":
                 s.duration = 600; break; default:
                 s.duration = parseFloat(s.duration) || 1;
@@ -5063,6 +5063,7 @@ if (Vel) {
           var _this = this;
 
           setTimeout(function () {
+            alert('dropdown click')
             if ($('ul.select-dropdown').not(options[0]).is(':visible')) {
               $('input.select-dropdown').trigger('close');
               $(window).off('click.select');
