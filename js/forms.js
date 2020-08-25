@@ -1,10 +1,10 @@
 (function ($) {
-  $(document).ready(function() {
+  $(document).ready(function () {
 
     // Function to update labels of text fields
-    Materialize.updateTextFields = function() {
+    Materialize.updateTextFields = function () {
       var input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], textarea';
-      $(input_selector).each(function(index, element) {
+      $(input_selector).each(function (index, element) {
         var $this = $(this);
         if ($(element).val().length > 0 || $(element).is(':focus') || element.autofocus || $this.attr('placeholder') !== undefined) {
           $this.siblings('label').addClass('active');
@@ -21,19 +21,19 @@
 
     // Add active if form auto complete
     $(document).on('change', input_selector, function () {
-      if($(this).val().length !== 0 || $(this).attr('placeholder') !== undefined) {
+      if ($(this).val().length !== 0 || $(this).attr('placeholder') !== undefined) {
         $(this).siblings('label').addClass('active');
       }
       validate_field($(this));
     });
 
     // Add active if input element has been pre-populated on document ready
-    $(document).ready(function() {
+    $(document).ready(function () {
       Materialize.updateTextFields();
     });
 
     // HTML DOM FORM RESET handling
-    $(document).on('reset', function(e) {
+    $(document).on('reset', function (e) {
       var formReset = $(e.target);
       if (formReset.is('form')) {
         formReset.find(input_selector).removeClass('valid').removeClass('invalid');
@@ -69,7 +69,7 @@
       validate_field($inputElement);
     });
 
-    window.validate_field = function(object) {
+    window.validate_field = function (object) {
       var hasLength = object.attr('data-length') !== undefined;
       var lenAttr = parseInt(object.attr('data-length'));
       var len = object.val().length;
@@ -97,12 +97,12 @@
 
     // Radio and Checkbox focus class
     var radio_checkbox = 'input[type=radio], input[type=checkbox]';
-    $(document).on('keyup.radio', radio_checkbox, function(e) {
+    $(document).on('keyup.radio', radio_checkbox, function (e) {
       // TAB, check if tabbing to radio or checkbox.
       if (e.which === 9) {
         $(this).addClass('tabbed');
         var $this = $(this);
-        $this.one('blur', function(e) {
+        $this.one('blur', function (e) {
 
           $(this).removeClass('tabbed');
         });
@@ -138,7 +138,7 @@
 
       if ($textarea.attr('wrap') === 'off') {
         hiddenDiv.css('overflow-wrap', 'normal')
-                 .css('white-space', 'pre');
+          .css('white-space', 'pre');
       }
 
       hiddenDiv.text($textarea.val() + '\n');
@@ -153,7 +153,7 @@
         hiddenDiv.css('width', $textarea.width());
       }
       else {
-        hiddenDiv.css('width', $(window).width()/2);
+        hiddenDiv.css('width', $(window).width() / 2);
       }
 
 
@@ -192,7 +192,7 @@
     $(document).on('change', '.file-field input[type="file"]', function () {
       var file_field = $(this).closest('.file-field');
       var path_input = file_field.find('input.file-path');
-      var files      = $(this)[0].files;
+      var files = $(this)[0].files;
       var file_names = [];
       for (var i = 0; i < files.length; i++) {
         file_names.push(files[i].name);
@@ -214,13 +214,13 @@
       $(this).after(thumb);
     });
 
-    var showRangeBubble = function(thumb) {
+    var showRangeBubble = function (thumb) {
       var paddingLeft = parseInt(thumb.parent().css('padding-left'));
       var marginLeft = (-7 + paddingLeft) + 'px';
-      thumb.velocity({ height: "30px", width: "30px", top: "-30px", marginLeft: marginLeft}, { duration: 300, easing: 'easeOutExpo' });
+      thumb.velocity({ height: "30px", width: "30px", top: "-30px", marginLeft: marginLeft }, { duration: 300, easing: 'easeOutExpo' });
     };
 
-    var calcRangeOffset = function(range) {
+    var calcRangeOffset = function (range) {
       var width = range.width() - 15;
       var max = parseFloat(range.attr('max'));
       var min = parseFloat(range.attr('min'));
@@ -229,7 +229,7 @@
     }
 
     var range_wrapper = '.range-field';
-    $(document).on('change', range_type, function(e) {
+    $(document).on('change', range_type, function (e) {
       var thumb = $(this).siblings('.thumb');
       thumb.find('.value').html($(this).val());
 
@@ -241,7 +241,7 @@
       thumb.addClass('active').css('left', offsetLeft);
     });
 
-    $(document).on('mousedown touchstart', range_type, function(e) {
+    $(document).on('mousedown touchstart', range_type, function (e) {
       var thumb = $(this).siblings('.thumb');
 
       // If thumb indicator does not exist yet, create it
@@ -266,12 +266,12 @@
       }
     });
 
-    $(document).on('mouseup touchend', range_wrapper, function() {
+    $(document).on('mouseup touchend', range_wrapper, function () {
       range_mousedown = false;
       $(this).removeClass('active');
     });
 
-    $(document).on('input mousemove touchmove', range_wrapper, function(e) {
+    $(document).on('input mousemove touchmove', range_wrapper, function (e) {
       var thumb = $(this).children('.thumb');
       var left;
       var input = $(this).find(range_type);
@@ -287,7 +287,7 @@
       }
     });
 
-    $(document).on('mouseout touchleave', range_wrapper, function() {
+    $(document).on('mouseout touchleave', range_wrapper, function () {
       if (!range_mousedown) {
 
         var thumb = $(this).children('.thumb');
@@ -295,7 +295,7 @@
         var marginLeft = (7 + paddingLeft) + 'px';
 
         if (thumb.hasClass('active')) {
-          thumb.velocity({ height: '0', width: '0', top: '10px', marginLeft: marginLeft}, { duration: 100 });
+          thumb.velocity({ height: '0', width: '0', top: '10px', marginLeft: marginLeft }, { duration: 100 });
         }
         thumb.removeClass('active');
       }
@@ -315,13 +315,13 @@
 
       options = $.extend(defaults, options);
 
-      return this.each(function() {
+      return this.each(function () {
         var $input = $(this);
         var data = options.data,
-            count = 0,
-            activeIndex = -1,
-            oldVal,
-            $inputDiv = $input.closest('.input-field'); // Div to append on
+          count = 0,
+          activeIndex = -1,
+          oldVal,
+          $inputDiv = $input.closest('.input-field'); // Div to append on
 
         // Check if data isn't empty
         if (!$.isEmptyObject(data)) {
@@ -346,13 +346,13 @@
           }
 
           // Highlight partial match.
-          var highlight = function(string, $el) {
+          var highlight = function (string, $el) {
             var img = $el.find('img');
             var matchStart = $el.text().toLowerCase().indexOf("" + string.toLowerCase() + ""),
-                matchEnd = matchStart + string.length - 1,
-                beforeMatch = $el.text().slice(0, matchStart),
-                matchText = $el.text().slice(matchStart, matchEnd + 1),
-                afterMatch = $el.text().slice(matchEnd + 1);
+              matchEnd = matchStart + string.length - 1,
+              beforeMatch = $el.text().slice(0, matchStart),
+              matchText = $el.text().slice(matchStart, matchEnd + 1),
+              afterMatch = $el.text().slice(matchEnd + 1);
             $el.html("<span>" + beforeMatch + "<span class='highlight'>" + matchText + "</span>" + afterMatch + "</span>");
             if (img.length) {
               $el.prepend(img);
@@ -360,19 +360,19 @@
           };
 
           // Reset current element position
-          var resetCurrentElement = function() {
+          var resetCurrentElement = function () {
             activeIndex = -1;
             $autocomplete.find('.active').removeClass('active');
           }
 
           // Remove autocomplete elements
-          var removeAutocomplete = function() {
+          var removeAutocomplete = function () {
             $autocomplete.empty();
             resetCurrentElement();
             oldVal = undefined;
           };
 
-          $input.off('blur.autocomplete').on('blur.autocomplete', function() {
+          $input.off('blur.autocomplete').on('blur.autocomplete', function () {
             removeAutocomplete();
           });
 
@@ -384,8 +384,8 @@
 
             // Don't capture enter or arrow key usage.
             if (e.which === 13 ||
-                e.which === 38 ||
-                e.which === 40) {
+              e.which === 38 ||
+              e.which === 40) {
               return;
             }
 
@@ -395,9 +395,9 @@
               removeAutocomplete();
 
               if (val.length >= options.minLength) {
-                for(var key in data) {
+                for (var key in data) {
                   if (data.hasOwnProperty(key) &&
-                      key.toLowerCase().indexOf(val) !== -1) {
+                    key.toLowerCase().indexOf(val) !== -1) {
                     // Break if past limit
                     if (count >= options.limit) {
                       break;
@@ -405,9 +405,9 @@
 
                     var autocompleteOption = $('<li></li>');
                     if (!!data[key]) {
-                      autocompleteOption.append('<img src="'+ data[key] +'" class="right circle"><span>'+ key +'</span>');
+                      autocompleteOption.append('<img src="' + data[key] + '" class="right circle"><span>' + key + '</span>');
                     } else {
-                      autocompleteOption.append('<span>'+ key +'</span>');
+                      autocompleteOption.append('<span>' + key + '</span>');
                     }
 
                     $autocomplete.append(autocompleteOption);
@@ -425,9 +425,9 @@
           $input.off('keydown.autocomplete').on('keydown.autocomplete', function (e) {
             // Arrow keys and enter key usage
             var keyCode = e.which,
-                liElement,
-                numItems = $autocomplete.children('li').length,
-                $active = $autocomplete.children('.active').first();
+              liElement,
+              numItems = $autocomplete.children('li').length,
+              $active = $autocomplete.children('.active').first();
 
             // select element on Enter
             if (keyCode === 13 && activeIndex >= 0) {
@@ -440,16 +440,16 @@
             }
 
             // Capture up and down key
-            if ( keyCode === 38 || keyCode === 40 ) {
+            if (keyCode === 38 || keyCode === 40) {
               e.preventDefault();
 
               if (keyCode === 38 &&
-                  activeIndex > 0) {
+                activeIndex > 0) {
                 activeIndex--;
               }
 
               if (keyCode === 40 &&
-                  activeIndex < (numItems - 1)) {
+                activeIndex < (numItems - 1)) {
                 activeIndex++;
               }
 
@@ -468,12 +468,12 @@
             removeAutocomplete();
 
             // Handle onAutocomplete callback.
-            if (typeof(options.onAutocomplete) === "function") {
+            if (typeof (options.onAutocomplete) === "function") {
               options.onAutocomplete.call(this, text);
             }
           });
 
-        // Empty data
+          // Empty data
         } else {
           $input.off('keyup.autocomplete focus.autocomplete');
         }
@@ -486,7 +486,7 @@
    *  Select Plugin  *
    ******************/
   $.fn.material_select = function (callback) {
-    $(this).each(function(){
+    $(this).each(function () {
       var $select = $(this);
 
       if ($select.hasClass('browser-default')) {
@@ -494,18 +494,18 @@
       }
 
       var multiple = $select.attr('multiple') ? true : false,
-          lastID = $select.attr('data-select-id'); // Tear down structure if Select needs to be rebuilt
+        lastID = $select.attr('data-select-id'); // Tear down structure if Select needs to be rebuilt
 
       if (lastID) {
         $select.parent().find('span.caret').remove();
         $select.parent().find('input').remove();
 
         $select.unwrap();
-        $('ul#select-options-'+lastID).remove();
+        $('ul#select-options-' + lastID).remove();
       }
 
       // If destroying the select, remove the selelct-id and reset it to it's uninitialized state.
-      if(callback === 'destroy') {
+      if (callback === 'destroy') {
         $select.removeAttr('data-select-id').removeClass('initialized');
         $(window).off('click.select');
         return;
@@ -517,16 +517,16 @@
       wrapper.addClass($select.attr('class'));
       if ($select.is(':disabled'))
         wrapper.addClass('disabled');
-      var options = $('<ul id="select-options-' + uniqueID +'" class="dropdown-content select-dropdown ' + (multiple ? 'multiple-select-dropdown' : '') + '"></ul>'),
-          selectChildren = $select.children('option, optgroup'),
-          valuesSelected = [],
-          optionsHover = false;
+      var options = $('<ul id="select-options-' + uniqueID + '" class="dropdown-content select-dropdown ' + (multiple ? 'multiple-select-dropdown' : '') + '"></ul>'),
+        selectChildren = $select.children('option, optgroup'),
+        valuesSelected = [],
+        optionsHover = false;
 
       var label = $select.find('option:selected').html() || $select.find('option:first').html() || "";
 
       // Function that renders and appends the option taking into
       // account type and possible image icon.
-      var appendOptionWithIcon = function(select, option, type) {
+      var appendOptionWithIcon = function (select, option, type) {
         // Add disabled attr if disabled
         var disabledClass = (option.is(':disabled')) ? 'disabled ' : '';
         var optgroupClass = (type === 'optgroup-option') ? 'optgroup-option ' : '';
@@ -550,7 +550,7 @@
 
       /* Create dropdown structure. */
       if (selectChildren.length) {
-        selectChildren.each(function() {
+        selectChildren.each(function () {
           if ($(this).is('option')) {
             // Direct descendant option.
             if (multiple) {
@@ -564,7 +564,7 @@
             var selectOptions = $(this).children('option');
             options.append($('<li class="optgroup"><span>' + $(this).attr('label') + '</span></li>'));
 
-            selectOptions.each(function() {
+            selectOptions.each(function () {
               appendOptionWithIcon($select, $(this), 'optgroup-option');
             });
           }
@@ -578,7 +578,7 @@
             var selected = true;
 
             if (multiple) {
-              $('input[type="checkbox"]', this).prop('checked', function(i, v) { return !v; });
+              $('input[type="checkbox"]', this).prop('checked', function (i, v) { return !v; });
               selected = toggleEntryFromArray(valuesSelected, i, $select);
               $newSelect.trigger('focus');
             } else {
@@ -606,14 +606,14 @@
       // escape double quotes
       var sanitizedLabelHtml = label.replace(/"/g, '&quot;');
 
-      var $newSelect = $('<input type="text" class="select-dropdown" readonly="true" ' + (($select.is(':disabled')) ? 'disabled' : '') + ' data-activates="select-options-' + uniqueID +'" value="'+ sanitizedLabelHtml +'"/>');
+      var $newSelect = $('<input type="text" class="select-dropdown" readonly="true" ' + (($select.is(':disabled')) ? 'disabled' : '') + ' data-activates="select-options-' + uniqueID + '" value="' + sanitizedLabelHtml + '"/>');
       $select.before($newSelect);
       $newSelect.before(dropdownIcon);
 
       $newSelect.after(options);
       // Check if section element is disabled
       if (!$select.is(':disabled')) {
-        $newSelect.dropdown({'hover': false});
+        $newSelect.dropdown({ 'hover': false });
       }
 
       // Copy tabindex
@@ -623,36 +623,71 @@
 
       $select.addClass('initialized');
 
+      // $newSelect.on({
+      //   'focus': function (){
+      //     if ($('ul.select-dropdown').not(options[0]).is(':visible')) {
+      //       $('input.select-dropdown').trigger('close');
+      //       $(window).off('click.select');
+      //     }
+      //     if (!options.is(':visible')) {
+      //       $(this).trigger('open', ['focus']);
+      //       var label = $(this).val();
+      //       if (multiple && label.indexOf(',') >= 0) {
+      //         label = label.split(',')[0];
+      //       }
+
+      //       var selectedOption = options.find('li').filter(function() {
+      //         return $(this).text().toLowerCase() === label.toLowerCase();
+      //       })[0];
+      //       activateOption(options, selectedOption, true);
+
+      //       $(window).off('click.select').on('click.select', function () {
+      //         multiple && (optionsHover || $newSelect.trigger('close'));
+      //         $(window).off('click.select');
+      //       });
+      //     }
+      //   },
+      //   'click': function (e){
+      //     e.stopPropagation();
+      //   }
+      // });
+
       $newSelect.on({
-        'focus': function (){
-          if ($('ul.select-dropdown').not(options[0]).is(':visible')) {
-            $('input.select-dropdown').trigger('close');
-            $(window).off('click.select');
-          }
-          if (!options.is(':visible')) {
-            $(this).trigger('open', ['focus']);
-            var label = $(this).val();
-            if (multiple && label.indexOf(',') >= 0) {
-              label = label.split(',')[0];
-            }
+        'focus': function () {
+          var _this = this;
 
-            var selectedOption = options.find('li').filter(function() {
-              return $(this).text().toLowerCase() === label.toLowerCase();
-            })[0];
-            activateOption(options, selectedOption, true);
-
-            $(window).off('click.select').on('click.select', function () {
-              multiple && (optionsHover || $newSelect.trigger('close'));
+          setTimeout(function () {
+            if ($('ul.select-dropdown').not(options[0]).is(':visible')) {
+              $('input.select-dropdown').trigger('close');
               $(window).off('click.select');
-            });
-          }
+            }
+            if (!options.is(':visible')) {
+              $(_this).trigger('open', ['focus']);
+              var label = $(_this).val();
+              if (multiple && label.indexOf(',') >= 0) {
+                label = label.split(',')[0];
+              }
+
+              var selectedOption = options.find('li').filter(function () {
+                return $(_this).text().toLowerCase() === label.toLowerCase();
+              })[0];
+              activateOption(options, selectedOption, true);
+
+              $(window).off('click.select').on('click.select', function () {
+                multiple && (optionsHover || $newSelect.trigger('close'));
+                $(window).off('click.select');
+              });
+            }
+          }, 75);
         },
-        'click': function (e){
+        'click': function (e) {
+          alert('dropdown click')
+          // e.preventDefault();
           e.stopPropagation();
         }
       });
 
-      $newSelect.on('blur', function() {
+      $newSelect.on('blur', function () {
         if (!multiple) {
           $(this).trigger('close');
           $(window).off('click.select');
@@ -660,7 +695,7 @@
         options.find('li.selected').removeClass('selected');
       });
 
-      options.hover(function() {
+      options.hover(function () {
         optionsHover = true;
       }, function () {
         optionsHover = false;
@@ -682,7 +717,7 @@
        * @param {Element} newOption  element of the new option
        * @param {Boolean} firstActivation  If on first activation of select
        */
-      var activateOption = function(collection, newOption, firstActivation) {
+      var activateOption = function (collection, newOption, firstActivation) {
         if (newOption) {
           collection.find('li.selected').removeClass('selected');
           var option = $(newOption);
@@ -696,85 +731,85 @@
       // Allow user to search by typing
       // this array is cleared after 1 second
       var filterQuery = [],
-          onKeyDown = function(e){
-            // TAB - switch to another input
-            if(e.which == 9){
-              $newSelect.trigger('close');
-              return;
-            }
+        onKeyDown = function (e) {
+          // TAB - switch to another input
+          if (e.which == 9) {
+            $newSelect.trigger('close');
+            return;
+          }
 
-            // ARROW DOWN WHEN SELECT IS CLOSED - open select options
-            if(e.which == 40 && !options.is(':visible')){
-              $newSelect.trigger('open');
-              return;
-            }
+          // ARROW DOWN WHEN SELECT IS CLOSED - open select options
+          if (e.which == 40 && !options.is(':visible')) {
+            $newSelect.trigger('open');
+            return;
+          }
 
-            // ENTER WHEN SELECT IS CLOSED - submit form
-            if(e.which == 13 && !options.is(':visible')){
-              return;
-            }
+          // ENTER WHEN SELECT IS CLOSED - submit form
+          if (e.which == 13 && !options.is(':visible')) {
+            return;
+          }
 
-            e.preventDefault();
+          e.preventDefault();
 
-            // CASE WHEN USER TYPE LETTERS
-            var letter = String.fromCharCode(e.which).toLowerCase(),
-                nonLetters = [9,13,27,38,40];
-            if (letter && (nonLetters.indexOf(e.which) === -1)) {
-              filterQuery.push(letter);
+          // CASE WHEN USER TYPE LETTERS
+          var letter = String.fromCharCode(e.which).toLowerCase(),
+            nonLetters = [9, 13, 27, 38, 40];
+          if (letter && (nonLetters.indexOf(e.which) === -1)) {
+            filterQuery.push(letter);
 
-              var string = filterQuery.join(''),
-                  newOption = options.find('li').filter(function() {
-                    return $(this).text().toLowerCase().indexOf(string) === 0;
-                  })[0];
+            var string = filterQuery.join(''),
+              newOption = options.find('li').filter(function () {
+                return $(this).text().toLowerCase().indexOf(string) === 0;
+              })[0];
 
-              if (newOption) {
-                activateOption(options, newOption);
-              }
-            }
-
-            // ENTER - select option and close when select options are opened
-            if (e.which == 13) {
-              var activeOption = options.find('li.selected:not(.disabled)')[0];
-              if(activeOption){
-                $(activeOption).trigger('click');
-                if (!multiple) {
-                  $newSelect.trigger('close');
-                }
-              }
-            }
-
-            // ARROW DOWN - move to next not disabled option
-            if (e.which == 40) {
-              if (options.find('li.selected').length) {
-                newOption = options.find('li.selected').next('li:not(.disabled)')[0];
-              } else {
-                newOption = options.find('li:not(.disabled)')[0];
-              }
+            if (newOption) {
               activateOption(options, newOption);
             }
+          }
 
-            // ESC - close options
-            if (e.which == 27) {
-              $newSelect.trigger('close');
+          // ENTER - select option and close when select options are opened
+          if (e.which == 13) {
+            var activeOption = options.find('li.selected:not(.disabled)')[0];
+            if (activeOption) {
+              $(activeOption).trigger('click');
+              if (!multiple) {
+                $newSelect.trigger('close');
+              }
             }
+          }
 
-            // ARROW UP - move to previous not disabled option
-            if (e.which == 38) {
-              newOption = options.find('li.selected').prev('li:not(.disabled)')[0];
-              if(newOption)
-                activateOption(options, newOption);
+          // ARROW DOWN - move to next not disabled option
+          if (e.which == 40) {
+            if (options.find('li.selected').length) {
+              newOption = options.find('li.selected').next('li:not(.disabled)')[0];
+            } else {
+              newOption = options.find('li:not(.disabled)')[0];
             }
+            activateOption(options, newOption);
+          }
 
-            // Automaticaly clean filter query so user can search again by starting letters
-            setTimeout(function(){ filterQuery = []; }, 1000);
-          };
+          // ESC - close options
+          if (e.which == 27) {
+            $newSelect.trigger('close');
+          }
+
+          // ARROW UP - move to previous not disabled option
+          if (e.which == 38) {
+            newOption = options.find('li.selected').prev('li:not(.disabled)')[0];
+            if (newOption)
+              activateOption(options, newOption);
+          }
+
+          // Automaticaly clean filter query so user can search again by starting letters
+          setTimeout(function () { filterQuery = []; }, 1000);
+        };
 
       $newSelect.on('keydown', onKeyDown);
     });
 
     function toggleEntryFromArray(entriesArray, entryIndex, select) {
       var index = entriesArray.indexOf(entryIndex),
-          notAdded = index === -1;
+        notAdded = index === -1;
 
       if (notAdded) {
         entriesArray.push(entryIndex);
@@ -808,4 +843,4 @@
     }
   };
 
-}( jQuery ));
+}(jQuery));
