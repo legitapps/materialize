@@ -271,7 +271,11 @@
 
   $(document).ready(function () {
     $('select').material_select();
-    document.querySelectorAll('.select-wrapper').forEach(t => t.addEventListener('click', e => e.stopPropagation()))
-    $('.dropdown-button').dropdown();
+    setTimeout(function () {
+      var kelle = $('.select-wrapper');// $('.select-wrapper');
+      $.each(kelle, function (i, t) {
+        t.addEventListener('click', e => e.stopPropagation())
+      });
+    }, 500)
   });
 }(jQuery));
