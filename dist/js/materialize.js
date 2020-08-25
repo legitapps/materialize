@@ -5088,6 +5088,7 @@ if (Vel) {
         },
         'click': function (e) {
           alert('dropdown click')
+          e.preventDefault();
           e.stopPropagation();
         }
       });
