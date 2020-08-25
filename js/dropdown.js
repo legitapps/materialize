@@ -270,10 +270,8 @@
   }; // End dropdown plugin
 
   $(document).ready(function () {
+    $('select').material_select();
+    document.querySelectorAll('.select-wrapper').forEach(t => t.addEventListener('click', e => e.stopPropagation()))
     $('.dropdown-button').dropdown();
-    $('.dropdown-button').on('mousedown', (e) => {
-      alert('dropdown event')
-      e.preventDefault();
-    })
   });
 }(jQuery));
