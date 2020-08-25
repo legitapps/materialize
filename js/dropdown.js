@@ -261,7 +261,7 @@
       // Listen to open and close event - useful for select component
       origin.on('open', function (e, eventType) {
         placeDropdown(eventType);
-        e.stopPropagation();
+        alert('open')
       });
       origin.on('close', hideDropdown);
 
