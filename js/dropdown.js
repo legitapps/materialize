@@ -271,5 +271,9 @@
 
   $(document).ready(function () {
     $('.dropdown-button').dropdown();
+    $('.dropdown-button').on('mousedown', (e) => {
+      alert('dropdown event')
+      e.preventDefault();
+    })
   });
 }(jQuery));
