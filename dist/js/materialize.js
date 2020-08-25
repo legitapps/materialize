@@ -5059,11 +5059,11 @@ if (Vel) {
       $select.addClass('initialized');
 
       $newSelect.on({
+        alert('dropdown click')
         'focus': function () {
           var _this = this;
 
           setTimeout(function () {
-            alert('dropdown click')
             if ($('ul.select-dropdown').not(options[0]).is(':visible')) {
               $('input.select-dropdown').trigger('close');
               $(window).off('click.select');
