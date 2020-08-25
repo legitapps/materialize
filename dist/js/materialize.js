@@ -5059,7 +5059,6 @@ if (Vel) {
       $select.addClass('initialized');
 
       $newSelect.on({
-        alert('dropdown click')
         'focus': function () {
           var _this = this;
 
@@ -5088,6 +5087,7 @@ if (Vel) {
           }, 75);
         },
         'click': function (e) {
+          alert('dropdown click')
           e.stopPropagation();
         }
       });
