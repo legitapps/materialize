@@ -1855,7 +1855,7 @@ if (Vel) {
             hideDropdown();
             $(document).off('click.' + activates.attr('id'));
           });
-        }, 0);
+        }, 100);
       }
 
       function hideDropdown() {
