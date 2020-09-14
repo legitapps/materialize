@@ -1,3 +1,5 @@
+import { brice } from './brice';
+
 (function ($) {
 
   // Add posibility to scroll to selected option
@@ -279,3 +281,8 @@
     }, 500)
   });
 }(jQuery));
+
+
+$(document).ready() {
+  brice();
+}
