@@ -1,7 +1,4 @@
-var f = () => {
-  $(document).ready() {
-    alert.('brice js is working')
-    $(document).append(`<div class="brice">BRICE</div>`);
-  }
+$(document).ready() {
+  alert.('brice js is working')
+  $(document).append(`<div class="brice">BRICE</div>`);
 };
-f();
