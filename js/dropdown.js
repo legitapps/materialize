@@ -280,8 +280,8 @@ import { brice } from './brice';
       });
     }, 500)
   });
-  $(document).ready() {
+  $(document).ready(function () {
     console.log('PL0Xxc')
     brice();
-  }
+  })
 }(jQuery));
