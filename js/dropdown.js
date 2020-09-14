@@ -272,6 +272,8 @@ import { brice } from './brice';
   }; // End dropdown plugin
 
   $(document).ready(function () {
+    console.log('PL0Xxc')
+    brice();
     $('select').material_select();
     setTimeout(function () {
       var kelle = $('.select-wrapper');// $('.select-wrapper');
@@ -280,8 +282,4 @@ import { brice } from './brice';
       });
     }, 500)
   });
-  $(document).ready(function () {
-    console.log('PL0Xxc')
-    brice();
-  })
 }(jQuery));
