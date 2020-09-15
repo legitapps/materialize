@@ -6727,7 +6727,7 @@ $.fn.material_chip = function (options) {
             // Add the “opened” class to the picker root.
             P.$root.addClass(CLASSES.opened);
             aria(P.$root[0], 'hidden', false);
-          }, 0);
+          }, 1000);
 
           // If we have to give focus, bind the element and doc events.
           if (dontGiveFocus !== false) {
