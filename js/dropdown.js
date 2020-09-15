@@ -23,6 +23,7 @@ import { brice } from './brice';
 
     // Open dropdown.
     if (options === "open") {
+      alert('open')
       this.each(function () {
         $(this).trigger('open');
       });
