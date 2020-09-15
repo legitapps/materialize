@@ -240,6 +240,7 @@ import { brice } from './brice';
         // Click handler to show dropdown
         origin.off('click.' + origin.attr('id'));
         origin.on('click.' + origin.attr('id'), function (e) {
+          alert('open plz')
           if (!isFocused) {
             if (origin[0] == e.currentTarget &&
               !origin.hasClass('active') &&
