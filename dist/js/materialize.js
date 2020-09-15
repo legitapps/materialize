@@ -6657,27 +6657,6 @@ $.fn.material_chip = function (options) {
           //   killing transitions :(. So add the “opened” state on the next tick.
           //   Bug: https://bugzilla.mozilla.org/show_bug.cgi?id=625289
           setTimeout(function () {
-
-            // Add the “opened” class to the picker root.
-            P.$root.addClass(CLASSES.opened);
-            aria(P.$root[0], 'hidden', false);
-          }, 0);
-
-          // If we have to give focus, bind the element and doc events.
-          if (dontGiveFocus !== false) {
-
-            // Set it as open.
-            STATE.open = true;
-
-            // Prevent the page from scrolling.
-            if (IS_DEFAULT_THEME) {
-              $html.css('overflow', 'hidden').css('padding-right', '+=' + getScrollbarWidth());
-            }
-
-            // Pass focus to the root element’s jQuery object.
-            // * Workaround for iOS8 to bring the picker’s root into view.
-            P.$root.eq(0).focus();
-
             // Bind the document events.
             $document.on('click.' + STATE.id + ' focusin.' + STATE.id, function (event) {
 
@@ -6742,6 +6721,24 @@ $.fn.material_chip = function (options) {
                 target.click();
               }
             });
+            // Pass focus to the root element’s jQuery object.
+            // * Workaround for iOS8 to bring the picker’s root into view.
+            P.$root.eq(0).focus();
+            // Add the “opened” class to the picker root.
+            P.$root.addClass(CLASSES.opened);
+            aria(P.$root[0], 'hidden', false);
+          }, 0);
+
+          // If we have to give focus, bind the element and doc events.
+          if (dontGiveFocus !== false) {
+
+            // Set it as open.
+            STATE.open = true;
+
+            // Prevent the page from scrolling.
+            if (IS_DEFAULT_THEME) {
+              $html.css('overflow', 'hidden').css('padding-right', '+=' + getScrollbarWidth());
+            }
           }
 
           // Trigger the queued “open” events.
