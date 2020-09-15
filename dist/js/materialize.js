@@ -1860,7 +1860,7 @@ if (Vel) {
         // Add click close handler to document
         setTimeout(function () {
           $(document).on('click.' + activates.attr('id'), function (e) {
-            hideDropdown();
+            //hideDropdown();
             $(document).off('click.' + activates.attr('id'));
           });
         }, 100);
